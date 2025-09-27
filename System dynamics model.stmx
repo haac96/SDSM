@@ -2,7 +2,7 @@
 <xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
 	<header>
 		<smile version="1.0" namespace="std, isee" uses_arrays="1"/>
-		<name>System dynamics model 2</name>
+		<name>System dynamics model</name>
 		<uuid>eed773d1-f4f7-4725-8d05-452b96d4f2dc</uuid>
 		<vendor>isee systems, inc.</vendor>
 		<product version="3.2" isee:build_number="2856" isee:saved_by_v1="true" lang="en">Stella Architect</product>
@@ -25,18 +25,30 @@
 	</isee:time_formats>
 	<default_format delimit_000s="true"/>
 	<data>
-		<export enabled="false" resource="r../Sensibilidad EscenariosV8.xlsx" type="Excel" worksheet="BAU-ES" interval="1" precomputed="false" isee:format="numbers">
+		<export frequency="on_demand" resource="r../Scenario analysis.xlsx" type="Excel" worksheet="BAU" interval="1" precomputed="false" isee:format="numbers">
 			<table name="EscenariosResultados"/>
 		</export>
-		<import isee:overwrite="true" orientation="horizontal" resource="r../ParametrosV8.xlsx" type="Excel" worksheet="Hoja2"/>
+		<import isee:overwrite="true" orientation="horizontal" resource="r../Input data.xlsx" type="Excel" worksheet=""/>
 	</data>
-	<isee:sensi_specs_list active_index="2">
+	<isee:sensi_specs_list active_index="1">
 		<isee:sensi_specs name="Emsiones GEI Factores" method="sobol_sequence" runs="5">
 			<isee:variable type="uniform" min="50" max="500" seed="12345" name="PEFgr" num_samples="5"/>
 			<isee:variable type="uniform" min="0.00005" max="0.0005" seed="123" name="TEF" num_samples="5"/>
 			<isee:variable type="uniform" min="0.00005" max="0.0005" seed="123" name="WEF" num_samples="5"/>
 		</isee:sensi_specs>
-		<isee:sensi_specs name="BAU" method="external" sheet="BAU-OP-PE" path="r../SensibilidadV8.xlsx">
+		<isee:sensi_specs name="BAU" method="external" sheet="BAU" path="r../Sensitivity parameters.xlsx">
+			<isee:variable type="adhoc" name="PIRM"/>
+			<isee:variable type="adhoc" name="PDRM"/>
+			<isee:variable type="adhoc" name="PCU"/>
+			<isee:variable type="adhoc" name="STi"/>
+			<isee:variable type="adhoc" name="UW"/>
+			<isee:variable type="adhoc" name="DSCT"/>
+			<isee:variable type="adhoc" name="PFCE"/>
+			<isee:variable type="adhoc" name="PWCA"/>
+			<isee:variable type="adhoc" name="PWD"/>
+			<isee:variable type="adhoc" name="PMW"/>
+		</isee:sensi_specs>
+		<isee:sensi_specs name="BAV-OP" method="external" sheet="BAV-OP" path="r../Sensitivity parameters.xlsx">
 			<isee:variable type="adhoc" name="PIRM"/>
 			<isee:variable type="adhoc" name="PDRM"/>
 			<isee:variable type="adhoc" name="PCU"/>
@@ -49,7 +61,7 @@
 			<isee:variable type="adhoc" name="PMW"/>
 			<isee:variable type="adhoc" name="NOr"/>
 		</isee:sensi_specs>
-		<isee:sensi_specs name="BAV-OP" method="external" sheet="BAV-OP" path="r../SensibilidadV8.xlsx">
+		<isee:sensi_specs name="BAV-PE" method="external" sheet="BAV-PE" path="r../Sensitivity parameters.xlsx">
 			<isee:variable type="adhoc" name="PIRM"/>
 			<isee:variable type="adhoc" name="PDRM"/>
 			<isee:variable type="adhoc" name="PCU"/>
@@ -62,20 +74,7 @@
 			<isee:variable type="adhoc" name="PMW"/>
 			<isee:variable type="adhoc" name="NOr"/>
 		</isee:sensi_specs>
-		<isee:sensi_specs name="BAV-PE" method="external" sheet="BAV-PE" path="r../SensibilidadV8.xlsx">
-			<isee:variable type="adhoc" name="PIRM"/>
-			<isee:variable type="adhoc" name="PDRM"/>
-			<isee:variable type="adhoc" name="PCU"/>
-			<isee:variable type="adhoc" name="STi"/>
-			<isee:variable type="adhoc" name="UW"/>
-			<isee:variable type="adhoc" name="DSCT"/>
-			<isee:variable type="adhoc" name="PFCE"/>
-			<isee:variable type="adhoc" name="PWCA"/>
-			<isee:variable type="adhoc" name="PWD"/>
-			<isee:variable type="adhoc" name="PMW"/>
-			<isee:variable type="adhoc" name="NOr"/>
-		</isee:sensi_specs>
-		<isee:sensi_specs name="BAU-OP-PE" method="external" sheet="BAU-OP-PE" path="r../SensibilidadV8.xlsx">
+		<isee:sensi_specs name="BAU-OP-PE" method="external" sheet="BAU-OP-PE" path="r../Sensitivity parameters.xlsx">
 			<isee:variable type="adhoc" name="PIRM"/>
 			<isee:variable type="adhoc" name="PDRM"/>
 			<isee:variable type="adhoc" name="PCU"/>
@@ -693,67 +692,67 @@ Workers</doc>
 				<format delimit_000s="false"/>
 				<entity name="SocBenchs"/>
 				<entity name="SocWeights"/>
-				<entity name="SocI"/>
 				<entity name="SocKPIs"/>
-				<entity name="SocKPIsW"/>
 				<entity name="MaxSocKPI"/>
+				<entity name="SocI"/>
+				<entity name="SocKPIsW"/>
 			</group>
 			<group name="Economic KPIs" run="true">
 				<format delimit_000s="false"/>
-				<entity name="Ecol"/>
-				<entity name="AER"/>
-				<entity name="ROAMT"/>
-				<entity name="EBIT"/>
-				<entity name="EcoKPIs"/>
-				<entity name="EcoWeights"/>
-				<entity name="EcoKPIsW"/>
-				<entity name="EcoBenchs"/>
-				<entity name="A"/>
 				<entity name="IA"/>
+				<entity name="ROAMT"/>
 				<entity name="MaxEcoKPI"/>
+				<entity name="EBIT"/>
+				<entity name="EcoWeights"/>
+				<entity name="AER"/>
+				<entity name="EcoKPIsW"/>
+				<entity name="Ecol"/>
+				<entity name="EcoBenchs"/>
+				<entity name="EcoKPIs"/>
+				<entity name="A"/>
 			</group>
 			<group name="Workers sub-model" run="true">
 				<format delimit_000s="false"/>
 				<entity name="W"/>
-				<entity name="WCAC"/>
-				<entity name="WSC"/>
-				<entity name="MW"/>
-				<entity name="MS"/>
-				<entity name="RT"/>
 				<entity name="Recv"/>
-				<entity name="MSC"/>
 				<entity name="TWr"/>
-				<entity name="WCA"/>
-				<entity name="PFCE"/>
-				<entity name="DW"/>
-				<entity name="APDP"/>
-				<entity name="HT"/>
-				<entity name="OD"/>
-				<entity name="ODC"/>
-				<entity name="ACAP"/>
-				<entity name="T"/>
-				<entity name="DIS"/>
-				<entity name="MFCEC"/>
-				<entity name="WW"/>
-				<entity name="FCEC"/>
-				<entity name="FCE"/>
-				<entity name="AFCE"/>
 				<entity name="ATDEW"/>
-				<entity name="PWD"/>
+				<entity name="AFCE"/>
+				<entity name="WSC"/>
+				<entity name="PFCE"/>
+				<entity name="MW"/>
+				<entity name="HT"/>
+				<entity name="MS"/>
+				<entity name="MSC"/>
+				<entity name="OD"/>
+				<entity name="DEW"/>
+				<entity name="APDP"/>
+				<entity name="ODC"/>
+				<entity name="WW"/>
+				<entity name="WCAC"/>
+				<entity name="Pt"/>
+				<entity name="DIS"/>
+				<entity name="RT"/>
 				<entity name="Inc"/>
+				<entity name="FCEC"/>
+				<entity name="WCA"/>
+				<entity name="T"/>
+				<entity name="MODC"/>
 				<entity name="PMW"/>
+				<entity name="HN"/>
+				<entity name="FCE"/>
+				<entity name="WS"/>
 				<entity name="UW"/>
 				<entity name="PWCA"/>
-				<entity name="Pt"/>
-				<entity name="MODC"/>
-				<entity name="MWCAC"/>
-				<entity name="DR"/>
-				<entity name="DEW"/>
+				<entity name="DW"/>
+				<entity name="MFCEC"/>
+				<entity name="PWD"/>
+				<entity name="ACAP"/>
 				<entity name="TSC"/>
+				<entity name="DR"/>
 				<entity name="HIR"/>
-				<entity name="WS"/>
 				<entity name="WRT"/>
-				<entity name="HN"/>
+				<entity name="MWCAC"/>
 			</group>
 			<group name="Environmental KPIs" run="true">
 				<format delimit_000s="false"/>
@@ -761,79 +760,79 @@ Workers</doc>
 				<entity name="EnviBenchs"/>
 				<entity name="EnviKPIs"/>
 				<entity name="MaxEnvKPI"/>
-				<entity name="EnviKPIsW"/>
 				<entity name="TCWD"/>
+				<entity name="EnviKPIsW"/>
 				<entity name="TEC"/>
 				<entity name="ECU"/>
 				<entity name="EnviI"/>
-				<entity name="AEFS"/>
 				<entity name="WTC"/>
+				<entity name="AEFS"/>
 			</group>
 			<group name="Production sub-model" run="true">
 				<format delimit_000s="false"/>
 				<entity name="STi"/>
-				<entity name="IM"/>
 				<entity name="PrT"/>
-				<entity name="SVU"/>
+				<entity name="PIRM"/>
 				<entity name="DPM"/>
-				<entity name="IMCT"/>
-				<entity name="DMCT"/>
-				<entity name="NOrI"/>
-				<entity name="TF"/>
-				<entity name="IPM"/>
-				<entity name="NIM"/>
-				<entity name="TCS"/>
-				<entity name="RPTC_Rate"/>
-				<entity name="IMO"/>
-				<entity name="SC"/>
-				<entity name="DM"/>
-				<entity name="MRDM"/>
-				<entity name="RPTC"/>
 				<entity name="PrR"/>
 				<entity name="PrN"/>
-				<entity name="De"/>
-				<entity name="DDM"/>
+				<entity name="TCS"/>
 				<entity name="AOT"/>
 				<entity name="WP"/>
-				<entity name="NOr"/>
+				<entity name="DMCT"/>
+				<entity name="MRIM"/>
+				<entity name="TCIM"/>
+				<entity name="NIM"/>
+				<entity name="IMO"/>
+				<entity name="DDM"/>
+				<entity name="PC"/>
+				<entity name="TF"/>
+				<entity name="DI"/>
+				<entity name="MRDM"/>
 				<entity name="DP"/>
-				<entity name="IMCr"/>
+				<entity name="IMD"/>
+				<entity name="SVU"/>
+				<entity name="DM"/>
+				<entity name="Ords"/>
+				<entity name="NOr"/>
+				<entity name="RPTC"/>
+				<entity name="RPTC_Rate"/>
+				<entity name="IM"/>
 				<entity name="APr"/>
 				<entity name="DelTi"/>
-				<entity name="IRM"/>
-				<entity name="TW"/>
-				<entity name="DIM"/>
-				<entity name="DMCr"/>
-				<entity name="St"/>
-				<entity name="WU"/>
-				<entity name="PDRM"/>
-				<entity name="D"/>
-				<entity name="Pr"/>
-				<entity name="ED"/>
-				<entity name="ARPTC"/>
-				<entity name="DI"/>
-				<entity name="Cum_RPTC"/>
-				<entity name="PC"/>
-				<entity name="WUP"/>
 				<entity name="DMP"/>
-				<entity name="Ords"/>
+				<entity name="SC"/>
+				<entity name="DIM"/>
+				<entity name="WU"/>
+				<entity name="DMCr"/>
+				<entity name="SR"/>
+				<entity name="Pr"/>
+				<entity name="D"/>
 				<entity name="PWU"/>
 				<entity name="DMC"/>
-				<entity name="IMD"/>
+				<entity name="WUP"/>
 				<entity name="DRM"/>
-				<entity name="TCIM"/>
-				<entity name="SR"/>
-				<entity name="IMC"/>
-				<entity name="DMO"/>
+				<entity name="TW"/>
 				<entity name="DSCT"/>
-				<entity name="TCDM"/>
-				<entity name="TP"/>
-				<entity name="TPC"/>
+				<entity name="Cum_RPTC"/>
+				<entity name="IMCr"/>
+				<entity name="IMC"/>
+				<entity name="De"/>
+				<entity name="DMO"/>
+				<entity name="ED"/>
 				<entity name="PCU"/>
-				<entity name="PIRM"/>
-				<entity name="MRIM"/>
+				<entity name="NOrI"/>
+				<entity name="TCDM"/>
+				<entity name="IMCT"/>
+				<entity name="IRM"/>
+				<entity name="ARPTC"/>
 				<entity name="DS"/>
+				<entity name="PDRM"/>
 				<entity name="DMD"/>
+				<entity name="St"/>
+				<entity name="TP"/>
+				<entity name="IPM"/>
+				<entity name="TPC"/>
 			</group>
 			<group name="Complex Performance Indicator (CPI)" run="true">
 				<format delimit_000s="false"/>
@@ -897,16 +896,16 @@ Workers</doc>
 			</aux>
 			<group name="Emissions sub-model" run="true">
 				<format delimit_000s="false"/>
-				<entity name="AbF"/>
-				<entity name="WEF"/>
 				<entity name="PrE"/>
-				<entity name="NAb"/>
 				<entity name="CO2_EitA"/>
+				<entity name="WEF"/>
+				<entity name="NAb"/>
 				<entity name="TEF"/>
 				<entity name="PrEF"/>
-				<entity name="Emi"/>
-				<entity name="TE"/>
 				<entity name="PEFgr"/>
+				<entity name="Emi"/>
+				<entity name="AbF"/>
+				<entity name="TE"/>
 				<entity name="grT"/>
 				<entity name="WE"/>
 			</group>
@@ -1472,7 +1471,7 @@ https://www.larepublica.co/responsabilidad-social/colombia-podria-aprovechar-cer
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="816" page_height="1056" isee:page_cols="6" isee:page_rows="6" isee:scroll_y="375" zoom="80" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="816" page_height="1056" isee:page_cols="6" isee:page_rows="6" zoom="80" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2072,8 +2071,8 @@ https://www.larepublica.co/responsabilidad-social/colombia-podria-aprovechar-cer
 				<aux x="264.639" y="2071.86" name="CPI Cum\nAvg"/>
 				<group locked="true" x="366.095" y="984.39" width="258.31" height="243.738" name="Social KPIs">
 					<item uid="641"/>
-					<item uid="7"/>
 					<item uid="586"/>
+					<item uid="7"/>
 					<item uid="585"/>
 					<item uid="587"/>
 					<item uid="13"/>
@@ -2089,55 +2088,55 @@ https://www.larepublica.co/responsabilidad-social/colombia-podria-aprovechar-cer
 				</group>
 				<group locked="true" x="14.8115" y="599.15" width="756.997" height="359.036" name="Workers sub-model">
 					<item uid="379"/>
-					<item uid="378"/>
+					<item uid="33"/>
+					<item uid="618"/>
+					<item uid="575"/>
 					<item uid="29"/>
 					<item uid="617"/>
-					<item uid="618"/>
-					<item uid="33"/>
-					<item uid="575"/>
+					<item uid="378"/>
 					<item uid="619"/>
 					<item uid="31"/>
 				</group>
 				<group locked="true" x="12.3563" y="984.39" width="344.866" height="276.978" name="Environmental KPIs">
 					<item uid="563"/>
-					<item uid="36"/>
+					<item uid="497"/>
 					<item uid="327"/>
 					<item uid="355"/>
-					<item uid="621"/>
-					<item uid="326"/>
-					<item uid="497"/>
-					<item uid="620"/>
 					<item uid="469"/>
+					<item uid="326"/>
+					<item uid="621"/>
+					<item uid="620"/>
 					<item uid="41"/>
 					<item uid="60"/>
 					<item uid="476"/>
+					<item uid="36"/>
 					<item uid="463"/>
 				</group>
 				<group locked="true" x="16.63" y="30.4667" width="1194.11" height="543.692" name="Production sub-model">
 					<item uid="79"/>
 					<item uid="376"/>
-					<item uid="75"/>
 					<item uid="454"/>
+					<item uid="633"/>
 					<item uid="473"/>
-					<item uid="74"/>
+					<item uid="80"/>
+					<item uid="75"/>
 					<item uid="54"/>
-					<item uid="374"/>
+					<item uid="71"/>
+					<item uid="330"/>
 					<item uid="362"/>
 					<item uid="70"/>
-					<item uid="633"/>
-					<item uid="628"/>
+					<item uid="374"/>
 					<item uid="614"/>
-					<item uid="608"/>
-					<item uid="616"/>
-					<item uid="330"/>
 					<item uid="629"/>
-					<item uid="78"/>
+					<item uid="608"/>
+					<item uid="74"/>
+					<item uid="616"/>
 					<item uid="615"/>
+					<item uid="78"/>
+					<item uid="628"/>
 					<item uid="69"/>
 					<item uid="363"/>
 					<item uid="73"/>
-					<item uid="80"/>
-					<item uid="71"/>
 					<item uid="331"/>
 					<item uid="77"/>
 				</group>
@@ -3477,35 +3476,35 @@ p, li { white-space: pre-wrap; }
 			</view>
 			<view isee:template_view="template:7" isee:name="Simulate" isee:original_design="Deluxe Tabbed Green Purple" background="white" page_width="1066" page_height="600" zoom="110" type="interface">
 				<style/>
-				<stacked_container x="130.306" y="78.8524" width="304.362" height="261.068">
+				<stacked_container x="130.306" y="78.8524" width="304.362" height="261.068" visible_index="2">
 					<graph width="304.362" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Production" isee:fill_intensity="0.1" from="0" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Units" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#6551F1" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Pr"/>
 						</plot>
 					</graph>
-					<graph isee:graph_area_color="white" width="304.362" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Materiales directos" isee:fill_intensity="0.1" x_axis_title="Mes" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Unidades" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+					<graph isee:graph_area_color="white" width="304.362" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Direct materials" isee:fill_intensity="0.1" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Units" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#61A5FF" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="DPM"/>
 						</plot>
 					</graph>
-					<graph isee:graph_area_color="white" width="304.362" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Materiales indirectos" isee:fill_intensity="0.1" x_axis_title="Mes" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Unidades" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+					<graph isee:graph_area_color="white" width="304.362" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Indirect materials" isee:fill_intensity="0.1" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Units" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#4CC1B7" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="IPM"/>
 						</plot>
 					</graph>
 				</stacked_container>
-				<stacked_container x="450.262" y="78.8524" width="316.667" height="261.068">
+				<stacked_container x="450.262" y="78.8524" width="316.667" height="261.068" visible_index="1">
 					<graph width="316.667" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Human capital" isee:fill_intensity="0.04" from="0" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Workers" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#6551F1" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="W"/>
 						</plot>
 					</graph>
-					<graph isee:graph_area_color="white" width="316.667" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Contrataciones" isee:fill_intensity="0.04" from="2" x_axis_title="Mes" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Trabajadores" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+					<graph isee:graph_area_color="white" width="316.667" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Hirings" isee:fill_intensity="0.04" from="2" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Workers" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#61A5FF" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="HIR"/>
 						</plot>
 					</graph>
-					<graph isee:graph_area_color="white" width="316.667" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Despidos" isee:fill_intensity="0.04" from="2" x_axis_title="Mes" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Trabajadores" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+					<graph isee:graph_area_color="white" width="316.667" height="261.068" type="time_series" show_grid="true" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="5" num_y_grid_lines="5" num_x_labels="5" num_y_labels="5" title="Layoffs" isee:fill_intensity="0.04" from="2" x_axis_title="Month" isee:allow_blowup="true" isee:allow_zero_axis="true" left_axis_title="Workers" left_axis_multi_scale="true" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot isee:immediately_update_on_user_input="true" color="#4CC1B7" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="DIS"/>
 							<scale min="1" max="2.5"/>
@@ -3860,8 +3859,8 @@ p, li { white-space: pre-wrap; }
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.55" center_x="1962.89" center_y="916.774" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false" outline_only="true">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="PrE"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
 								<entity name="Emi"/>
 								<entity name="WE"/>
 							</isee:visible_list>
@@ -3893,8 +3892,8 @@ p, li { white-space: pre-wrap; }
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.55" center_x="1962.89" center_y="916.774" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false" outline_only="true">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="PrE"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
 								<entity name="Emi"/>
 								<entity name="WE"/>
 							</isee:visible_list>
@@ -3924,9 +3923,9 @@ Estas emisiones estarán relacionadas con las características tecnológicas de 
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="WEF"/>
-								<entity name="PrE"/>
 								<entity name="PrEF"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
 								<entity name="Emi"/>
 								<entity name="TEF"/>
 								<entity name="WE"/>
@@ -3960,12 +3959,12 @@ Estas emisiones estarán relacionadas con las características tecnológicas de 
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="WEF"/>
-								<entity name="PrE"/>
-								<entity name="Emi"/>
 								<entity name="TEF"/>
 								<entity name="WE"/>
 								<entity name="PrEF"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
+								<entity name="Emi"/>
 								<entity name="CO2_EitA"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -3995,13 +3994,13 @@ Estas emisiones estarán relacionadas con las características tecnológicas de 
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="WEF"/>
-								<entity name="PrE"/>
 								<entity name="NAb"/>
-								<entity name="Emi"/>
 								<entity name="TEF"/>
 								<entity name="WE"/>
 								<entity name="PrEF"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
+								<entity name="Emi"/>
 								<entity name="CO2_EitA"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4031,14 +4030,14 @@ Estas emisiones estarán relacionadas con las características tecnológicas de 
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="WEF"/>
-								<entity name="PrE"/>
 								<entity name="NAb"/>
 								<entity name="TEF"/>
 								<entity name="AbF"/>
 								<entity name="WE"/>
 								<entity name="PrEF"/>
-								<entity name="CO2_EitA"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
+								<entity name="CO2_EitA"/>
 								<entity name="Emi"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4076,14 +4075,14 @@ p, li { white-space: pre-wrap; }
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="WEF"/>
-								<entity name="PrE"/>
 								<entity name="NAb"/>
 								<entity name="TEF"/>
 								<entity name="AbF"/>
 								<entity name="WE"/>
 								<entity name="PrEF"/>
-								<entity name="CO2_EitA"/>
 								<entity name="TE"/>
+								<entity name="PrE"/>
+								<entity name="CO2_EitA"/>
 								<entity name="Emi"/>
 							</isee:visible_list>
 							<isee:highlight_list/>
@@ -4136,8 +4135,8 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="W"/>
-								<entity name="DEW"/>
 								<entity name="UW"/>
+								<entity name="DEW"/>
 							</isee:visible_list>
 							<isee:highlight_list>
 								<entity name="UW"/>
@@ -4156,9 +4155,9 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="W"/>
+								<entity name="UW"/>
 								<entity name="HN"/>
 								<entity name="DEW"/>
-								<entity name="UW"/>
 							</isee:visible_list>
 							<isee:highlight_list>
 								<entity name="HN"/>
@@ -4200,12 +4199,12 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<isee:visible_list>
 								<entity name="HIR"/>
 								<entity name="HN"/>
-								<entity name="DIS"/>
-								<entity name="WRT"/>
 								<entity name="HT"/>
+								<entity name="DIS"/>
 								<entity name="W"/>
-								<entity name="DEW"/>
+								<entity name="WRT"/>
 								<entity name="UW"/>
+								<entity name="DEW"/>
 							</isee:visible_list>
 							<isee:highlight_list>
 								<entity name="WRT"/>
@@ -4225,12 +4224,12 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<isee:visible_list>
 								<entity name="HIR"/>
 								<entity name="HN"/>
-								<entity name="DIS"/>
-								<entity name="WRT"/>
 								<entity name="HT"/>
+								<entity name="DIS"/>
 								<entity name="W"/>
-								<entity name="DEW"/>
+								<entity name="WRT"/>
 								<entity name="UW"/>
+								<entity name="DEW"/>
 							</isee:visible_list>
 							<isee:highlight_list/>
 						</isee:model_view>
@@ -4268,11 +4267,11 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 								<entity name="PrN"/>
 								<entity name="NOr"/>
 								<entity name="Pr"/>
-								<entity name="NOrI"/>
 								<entity name="St"/>
-								<entity name="PrT"/>
 								<entity name="Ords"/>
+								<entity name="PrT"/>
 								<entity name="De"/>
+								<entity name="NOrI"/>
 								<entity name="STi"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4307,16 +4306,16 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.6" center_x="1221.17" center_y="658.739" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false" outline_only="true">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="De"/>
-								<entity name="PrN"/>
 								<entity name="ED"/>
-								<entity name="STi"/>
-								<entity name="AOT"/>
-								<entity name="Pr"/>
-								<entity name="NOrI"/>
+								<entity name="PrN"/>
 								<entity name="NOr"/>
-								<entity name="St"/>
+								<entity name="De"/>
 								<entity name="PrT"/>
+								<entity name="Pr"/>
+								<entity name="STi"/>
+								<entity name="NOrI"/>
+								<entity name="AOT"/>
+								<entity name="St"/>
 								<entity name="Ords"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4335,19 +4334,19 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.6" center_x="1221.17" center_y="658.739" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false" outline_only="true">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="STi"/>
 								<entity name="ED"/>
-								<entity name="AOT"/>
 								<entity name="PrN"/>
-								<entity name="De"/>
-								<entity name="D"/>
-								<entity name="Pr"/>
-								<entity name="NOrI"/>
 								<entity name="NOr"/>
-								<entity name="DI"/>
-								<entity name="St"/>
 								<entity name="PrT"/>
+								<entity name="De"/>
+								<entity name="DI"/>
+								<entity name="D"/>
 								<entity name="Ords"/>
+								<entity name="Pr"/>
+								<entity name="STi"/>
+								<entity name="NOrI"/>
+								<entity name="AOT"/>
+								<entity name="St"/>
 							</isee:visible_list>
 							<isee:highlight_list>
 								<entity name="D"/>
@@ -4366,19 +4365,19 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="D"/>
-								<entity name="De"/>
-								<entity name="PrN"/>
-								<entity name="STi"/>
-								<entity name="AOT"/>
-								<entity name="ED"/>
-								<entity name="DSCT"/>
-								<entity name="DS"/>
-								<entity name="NOr"/>
-								<entity name="St"/>
-								<entity name="DI"/>
 								<entity name="Ords"/>
+								<entity name="DI"/>
+								<entity name="DSCT"/>
+								<entity name="ED"/>
+								<entity name="DS"/>
+								<entity name="PrN"/>
+								<entity name="NOr"/>
+								<entity name="De"/>
 								<entity name="PrT"/>
+								<entity name="AOT"/>
+								<entity name="St"/>
 								<entity name="Pr"/>
+								<entity name="STi"/>
 								<entity name="NOrI"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4398,21 +4397,21 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 							<model name="Top-Level"/>
 							<isee:visible_list>
 								<entity name="PrN"/>
-								<entity name="De"/>
-								<entity name="D"/>
-								<entity name="TCS"/>
-								<entity name="AOT"/>
-								<entity name="STi"/>
-								<entity name="ED"/>
-								<entity name="DSCT"/>
 								<entity name="NOr"/>
-								<entity name="DS"/>
-								<entity name="SC"/>
-								<entity name="Ords"/>
 								<entity name="DI"/>
+								<entity name="DSCT"/>
+								<entity name="DS"/>
+								<entity name="ED"/>
+								<entity name="Ords"/>
+								<entity name="TCS"/>
+								<entity name="D"/>
 								<entity name="PrT"/>
+								<entity name="De"/>
+								<entity name="SC"/>
+								<entity name="AOT"/>
 								<entity name="St"/>
 								<entity name="NOrI"/>
+								<entity name="STi"/>
 								<entity name="Pr"/>
 							</isee:visible_list>
 							<isee:highlight_list>
@@ -4431,24 +4430,24 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.6" center_x="1221.17" center_y="658.739" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false" outline_only="true">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="DS"/>
-								<entity name="NOr"/>
 								<entity name="PrN"/>
-								<entity name="De"/>
-								<entity name="D"/>
-								<entity name="SC"/>
-								<entity name="STi"/>
-								<entity name="DP"/>
 								<entity name="ED"/>
-								<entity name="AOT"/>
+								<entity name="NOr"/>
+								<entity name="DI"/>
+								<entity name="D"/>
+								<entity name="Ords"/>
 								<entity name="TCS"/>
 								<entity name="DSCT"/>
+								<entity name="DS"/>
+								<entity name="SC"/>
+								<entity name="PrT"/>
+								<entity name="De"/>
 								<entity name="Pr"/>
 								<entity name="NOrI"/>
-								<entity name="PrT"/>
+								<entity name="STi"/>
+								<entity name="AOT"/>
+								<entity name="DP"/>
 								<entity name="St"/>
-								<entity name="Ords"/>
-								<entity name="DI"/>
 							</isee:visible_list>
 							<isee:highlight_list>
 								<entity name="DP"/>
@@ -4467,21 +4466,21 @@ El segundo asociado al impacto de las emisiones en la absorción</text>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.15" center_x="899.832" center_y="608.542" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false">
 							<model name="Top-Level"/>
 							<isee:visible_list>
-								<entity name="Pr"/>
 								<entity name="DM"/>
-								<entity name="PrN"/>
-								<entity name="DMC"/>
-								<entity name="IMD"/>
-								<entity name="DPM"/>
-								<entity name="IM"/>
-								<entity name="DMD"/>
 								<entity name="MRDM"/>
+								<entity name="DMC"/>
+								<entity name="DPM"/>
+								<entity name="PrT"/>
+								<entity name="Pr"/>
+								<entity name="IM"/>
+								<entity name="IMD"/>
+								<entity name="DMD"/>
 								<entity name="MRIM"/>
 								<entity name="DelTi"/>
+								<entity name="IMC"/>
+								<entity name="PrN"/>
 								<entity name="IPM"/>
 								<entity name="St"/>
-								<entity name="PrT"/>
-								<entity name="IMC"/>
 							</isee:visible_list>
 							<isee:highlight_list/>
 						</isee:model_view>
