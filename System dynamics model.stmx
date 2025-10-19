@@ -3317,11 +3317,7 @@ EcoKPI2: Rentabilidad total de los activos (Return on assets)</text_box>
 				<style/>
 				<text_box z_index="1" text_align="center" vertical_text_align="bottom" font_family="Trebuchet MS" font_size="72pt" appearance="transparent" x="55.882" y="139.123" width="947.059" height="102.706">Business Sustainability</text_box>
 				<text_box z_index="2" text_align="center" vertical_text_align="bottom" font_color="#353535" font_size="16pt" appearance="transparent" x="251.176" y="241.829" width="570.588" height="180.877">A simulation model with System Dynamics that gives environmental, social, and economic indicators
-Authors: 
-Harol Avila
-Liliana Ruíz
-Mario Muñoz
-David Camargo</text_box>
+				</text_box>
 				<button z_index="2" background="#6551F1" font_color="white" font_family="Open Sans" font_size="18pt" border_color="#959595" corner_radius="15" label="Go!" isee:tooltip="" x="463.882" y="445.294" width="131.059" height="50">
 					<actions>
 						<action target="next_page">navigate</action>
